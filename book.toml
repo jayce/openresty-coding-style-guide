@@ -1,0 +1,8 @@
+[book]
+authors = ["Jayce"]
+multilingual = false
+src = "src"
+title = "OpenResty C 语言编码风格指南"
+
+[build]
+preprocess = ["links", "index"]
