@@ -19,4 +19,4 @@ ngx_int_t ngx_http_filter_finalize_request(ngx_http_request_t *r,
 char *ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 ```
 
-注意函数定义的风格不同于函数声明。更多细节见[函数定义](./ch-06-function-definitions.md)。
+> **注意**：函数定义的风格不同于函数声明。更多细节见[函数定义](./ch-06-function-definitions.md)。
