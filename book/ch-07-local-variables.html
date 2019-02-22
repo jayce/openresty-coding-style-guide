@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>行尾空白符 - OpenResty C 语言编码风格指南</title>
+        <title>局部变量 - OpenResty C 语言编码风格指南</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-03-line-trailing-white-spaces.html" class="active"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-04-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-05-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-03-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-06-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-07-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-08-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-09-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-10-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-11-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-12-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 内存分配错误处理</a></li><li><a href="ch-13-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-14-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-15-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局变量</a></li><li><a href="ch-16-unary-operators.html"><strong aria-hidden="true">18.</strong> 一元表达式</a></li><li><a href="ch-17-binary-operators.html"><strong aria-hidden="true">19.</strong> 二元表达式</a></li><li><a href="ch-18-ternary-operators.html"><strong aria-hidden="true">20.</strong> 三元表达式</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">21.</strong> struct/union/enum 定义</a></li><li><a href="ch-20-typedef-definitions.html"><strong aria-hidden="true">22.</strong> 类型定义</a></li><li><a href="ch-21-goto-statements-and-code-labels.html"><strong aria-hidden="true">23.</strong> goto 语句</a></li><li><a href="ch-22-checking-pointer-nullity.html"><strong aria-hidden="true">24.</strong> 检查无效指针</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html" class="active"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -140,21 +140,59 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#行尾空白符" id="行尾空白符"><h1>行尾空白符</h1></a>
-<p>每行源码的结尾不应该有<strong>空格符</strong>和<strong>制表符</strong>，甚至是空白行。大多数编辑器支持自动高亮或移除这样的空白符。确保正确地配置编辑器或者 IDE。</p>
+                        <a class="header" href="#局部变量" id="局部变量"><h1>局部变量</h1></a>
+<p>在<a href="./ch-01-naming-convention.html">命名约定</a>中要求局部变量使用更短的名称，类似 <code>ev</code>, <code>clcf</code> 这样的。它们在定义的时候也有一些要求。</p>
+<p>它们应总是写在每个 C 函数定义块开始的位置，且不仅仅只在任意代码块开头，除非为了调试或者有其他特殊要求。还有，它们的变量标识符（除 <code>*</code> 前缀字符以外），必须垂直对其。以下是 NGINX 核心的示例：</p>
+<pre><code class="language-C">    ngx_str_t            *value;
+    ngx_uint_t            i;
+    ngx_regex_elt_t      *re;
+    ngx_regex_compile_t   rc;
+    u_char                errstr[NGX_MAX_CONF_ERRSTR];
+</code></pre>
+<p>请注意 <code>value</code>, <code>i</code>, <code>re</code>, <code>rc</code>, <code>errstr</code> 这些标识符是如何垂直对其的。前缀 <code>*</code> 不计入对其。</p>
+<p>有的时候，某些局部变量的定义可能特别长，要与其余变量对其可能会使代码变得丑陋。然后我们在它们之间放一个空行。
+在这种情况下，两组定义是不需要垂直对齐的。以下就是这样的例子：</p>
+<pre><code class="language-C">static char *
+ngx_http_core_open_file_cache(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
+{
+    ngx_http_core_loc_conf_t *clcf = conf;
+
+    time_t       inactive;
+    ngx_str_t   *value, s;
+    ngx_int_t    max;
+    ngx_uint_t   i;
+    ...
+}
+</code></pre>
+<p>注意变量 <code>clcf</code> 和其余的局部变量是如何被空行分开的。其余的局部变量仍然是垂直对其的。</p>
+<p>局部变量声明之后也必须跟着一个空行，将它们与当前实际执行的 C 代码分开。例如：</p>
+<pre><code class="language-C">u_char * ngx_cdecl
+ngx_sprintf(u_char *buf, const char *fmt, ...)
+{
+    u_char   *p;
+    va_list   args;
+
+    va_start(args, fmt);
+    p = ngx_vslprintf(buf, (void *) -1, fmt, args);
+    va_end(args);
+
+    return p;
+}
+</code></pre>
+<p>在局部变量定义之后跟着一个空行。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="ch-03-the-80-column-limit.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch-06-function-definitions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="ch-04-function-declarations.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch-00-links.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -166,13 +204,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="ch-03-the-80-column-limit.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="ch-06-function-definitions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="ch-04-function-declarations.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="ch-00-links.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
