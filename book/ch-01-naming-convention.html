@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html" class="active"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><ol class="section"><li><a href="ch-03-local-variables.html"><strong aria-hidden="true">2.1.</strong> 局部变量</a></li><li><a href="ch-04-function-declarations.html"><strong aria-hidden="true">2.2.</strong> 函数声明</a></li><li><a href="ch-05-function-definitions.html"><strong aria-hidden="true">2.3.</strong> 函数定义</a></li><li><a href="ch-06-use-of-blank-lines.html"><strong aria-hidden="true">2.4.</strong> 空白行使用</a></li><li><a href="ch-07-type-casting.html"><strong aria-hidden="true">2.5.</strong> 类型转换</a></li><li><a href="ch-08-if-statements.html"><strong aria-hidden="true">2.6.</strong> if 语句</a></li><li><a href="ch-09-for-statements.html"><strong aria-hidden="true">2.7.</strong> for 语句</a></li><li><a href="ch-10-while-statements.html"><strong aria-hidden="true">2.8.</strong> while 语句</a></li><li><a href="ch-11-switch-statements.html"><strong aria-hidden="true">2.9.</strong> switch 语句</a></li><li><a href="ch-12-allocation-error-handling.html"><strong aria-hidden="true">2.10.</strong> 内存分配错误处理</a></li><li><a href="ch-13-function-calls.html"><strong aria-hidden="true">2.11.</strong> 函数调用</a></li><li><a href="ch-14-macros.html"><strong aria-hidden="true">2.12.</strong> 宏</a></li><li><a href="ch-15-global-static-variables.html"><strong aria-hidden="true">2.13.</strong> 全局变量</a></li></ol></li><li><a href="ch-16-unary-operators.html"><strong aria-hidden="true">3.</strong> 一元表达式</a></li><li><a href="ch-17-binary-operators.html"><strong aria-hidden="true">4.</strong> 二元表达式</a></li><li><a href="ch-18-ternary-operators.html"><strong aria-hidden="true">5.</strong> 三元表达式</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">6.</strong> struct/union/enum 定义</a></li><li><a href="ch-20-typedef-definitions.html"><strong aria-hidden="true">7.</strong> 类型定义</a></li><li><a href="ch-21-goto-statements-and-code-labels.html"><strong aria-hidden="true">8.</strong> goto 语句</a></li><li><a href="ch-22-checking-pointer-nullity.html"><strong aria-hidden="true">9.</strong> 检查无效指针</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html" class="active"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-03-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-04-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-05-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-03-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-06-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-07-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-08-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-09-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-10-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-11-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-12-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 内存分配错误处理</a></li><li><a href="ch-13-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-14-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-15-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局变量</a></li><li><a href="ch-16-unary-operators.html"><strong aria-hidden="true">18.</strong> 一元表达式</a></li><li><a href="ch-17-binary-operators.html"><strong aria-hidden="true">19.</strong> 二元表达式</a></li><li><a href="ch-18-ternary-operators.html"><strong aria-hidden="true">20.</strong> 三元表达式</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">21.</strong> struct/union/enum 定义</a></li><li><a href="ch-20-typedef-definitions.html"><strong aria-hidden="true">22.</strong> 类型定义</a></li><li><a href="ch-21-goto-statements-and-code-labels.html"><strong aria-hidden="true">23.</strong> goto 语句</a></li><li><a href="ch-22-checking-pointer-nullity.html"><strong aria-hidden="true">24.</strong> 检查无效指针</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -145,6 +145,27 @@
 <p>在 Lua 库的 C 组件中，我们也应该使用类似 <code>resty_blah_</code>（如果库名为 <code>lua-resty-blah</code>）的字符作为 C 编辑单元中的所有 C 符号的前缀。</p>
 <p>我们在 C 函数中定义局部变量的时候应该使用短名称。在 NGINX 核心代码中有大量常用的短名称，比如：<code>cl</code>, <code>ev</code>, <code>ctx</code>, <code>v</code>, <code>p</code>, <code>q</code> 等等。这些变量一般都是临时的、局部的。根据霍夫曼原则，我们应该在当前上下文环境中使用通用的短名称来避免单行干扰。即使是短名称也应该遵循 NGINX 的约定。除非必要，不要创建自己的约定。并使用有意义的名称。短名称 <code>p</code> 和 <code>q</code> 它们是字符串指针变量的通用名称，在字符串处理上下文环境当中使用。</p>
 <p>C 语言结构体和联合的成员变量名称尽可能的使用单词的完整拼写形式（除非名称太长）。例如，NGINX 核心结构体 <code>ngx_http_request_s</code> 当中有像 <code>read_event_handler</code>, <code>upstream_states</code>, <code>request_body_in_persistent_file</code> 这样很长名称。</p>
+<p>我们应该在 <code>typedef</code> 引用结构体类型时使用 <code>_t</code> 结尾，定义结构体名称时使用 <code>_s</code> 结尾，定义枚举类型时使用 <code>_e</code> 结尾。在函数作用域当中定义类型时不受此约束。以下是 NGINX 核心的一些例子：</p>
+<pre><code class="language-c">typedef struct ngx_connection_s      ngx_connection_t;
+</code></pre>
+<pre><code class="language-c">typedef struct {
+    WSAOVERLAPPED    ovlp;
+    ngx_event_t     *event;
+    int              error;
+} ngx_event_ovlp_t;
+</code></pre>
+<pre><code class="language-c">struct ngx_chain_s {
+    ngx_buf_t    *buf;
+    ngx_chain_t  *next;
+};
+</code></pre>
+<pre><code class="language-c">typedef enum {
+    ngx_pop3_start = 0,
+    ngx_pop3_user,
+    ...
+    ngx_pop3_auth_external
+} ngx_pop3_state_e;
+</code></pre>
 
                     </main>
 
@@ -183,21 +204,6 @@
 
         </div>
 
-        
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3001");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload(true); // force reload from server (not from cache)
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         
 
         
