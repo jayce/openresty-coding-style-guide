@@ -9,6 +9,10 @@ OpenResty C 语言编码风格指南
 - [行尾空白符](ch-04-line-trailing-white-spaces.md)
 - [函数声明](ch-05-function-declarations.md)
 - [函数定义](ch-06-function-definitions.md)
+
+[参考链接](ch-00-links.md)
+
+<!--
 - [局部变量](ch-07-local-variables.md)
 - [空行使用](ch-08-use-of-blank-lines.md)
 - [类型转换](ch-09-type-casting.md)
@@ -27,5 +31,4 @@ OpenResty C 语言编码风格指南
 - [类型定义](ch-22-typedef-definitions.md)
 - [goto 语句](ch-23-goto-statements-and-code-labels.md)
 - [检查无效指针](ch-24-checking-pointer-nullity.md)
-
-[参考链接](ch-00-links.md)
+-->
