@@ -10,11 +10,11 @@ OpenResty C 语言编码风格指南
 - [函数声明](ch-05-function-declarations.md)
 - [函数定义](ch-06-function-definitions.md)
 - [局部变量](ch-07-local-variables.md)
+- [空行使用](ch-08-use-of-blank-lines.md)
 
 [参考链接](ch-00-links.md)
 
 <!--
-- [空行使用](ch-08-use-of-blank-lines.md)
 - [类型转换](ch-09-type-casting.md)
 - [if 语句](ch-10-if-statements.md)
 - [for 语句](ch-11-for-statements.md)
