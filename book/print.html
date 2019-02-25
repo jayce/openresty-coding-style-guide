@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -463,6 +463,52 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 </code></pre>
 <p>注意 <code>} else {</code> 是如何放在同一行上的，并且在 <code>} else {</code> 之前有一个空行。</p>
+<a class="header" href="#for-语句" id="for-语句"><h1>for 语句</h1></a>
+<p><code>for</code> 语句在很多方面与<a href="./ch-10-if-statements.html">if 语句</a> 章节中的风格类似。
+<code>for</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含语句。而且，还要有个空格在 <code>for</code> 条件部分 <code>;</code> 之后。以下示例演示了这些要求：</p>
+<pre><code class="language-C">for (i = 0; i &lt; size; i++) {
+    ...
+}
+</code></pre>
+<p>无限循环是个特殊情况，在 NGINX 世界中常用编码如下：</p>
+<pre><code class="language-C">    for ( ;; ) {
+        ...
+    }
+</code></pre>
+<p>或在 <code>for</code> 语句条件部分使用逗号表达式时：</p>
+<pre><code class="language-C">    for (i = 0, n = 2; n &lt; cf-&gt;args-&gt;nelts; i++, n++) {
+        ...
+    }
+</code></pre>
+<p>或只忽略循环条件时：</p>
+<pre><code class="language-C">    for (p = pool, n = pool-&gt;d.next; /* void */; p = n, n = n-&gt;d.next) {
+        ...
+    }
+</code></pre>
+<a class="header" href="#while-语句" id="while-语句"><h1>while 语句</h1></a>
+<p><code>while</code> 语句在很多方面与 <a href="./ch-10-if-statements.html">if 语句</a> 章节中的风格类似。
+在 <code>for</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含语句。以下是个例子：</p>
+<pre><code class="language-C">    while (log-&gt;next) {
+        if (new_log-&gt;log_level &gt; log-&gt;next-&gt;log_level) {
+            new_log-&gt;next = log-&gt;next;
+            log-&gt;next = new_log;
+            return;
+        }
+
+        log = log-&gt;next;
+    }
+</code></pre>
+<p><code>do-while</code> 语句也是类似：</p>
+<pre><code class="language-C">        do {
+            p = h2c-&gt;state.handler(h2c, p, end);
+
+            if (p == NULL) {
+                return;
+            }
+
+        } while (p != end);
+</code></pre>
+<p>注意 <code>do</code> 和 <code>{</code> 之间的空格符，以及 <code>while</code> 前后的空格符。</p>
 <a class="header" href="#参考链接" id="参考链接"><h1>参考链接</h1></a>
 <ul>
 <li><a href="https://github.com/ruanyf/document-style-guide">中文技术文档写作规范</a></li>
