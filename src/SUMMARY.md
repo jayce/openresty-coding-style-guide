@@ -12,11 +12,11 @@ OpenResty C 语言编码风格指南
 - [局部变量](ch-07-local-variables.md)
 - [空行使用](ch-08-use-of-blank-lines.md)
 - [类型转换](ch-09-type-casting.md)
+- [if 语句](ch-10-if-statements.md)
 
 [参考链接](ch-00-links.md)
 
 <!--
-- [if 语句](ch-10-if-statements.md)
 - [for 语句](ch-11-for-statements.md)
 - [while 语句](ch-12-while-statements.md)
 - [switch 语句](ch-13-switch-statements.md)
