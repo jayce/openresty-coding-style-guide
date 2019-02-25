@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>序言 - OpenResty C 语言编码风格指南</title>
+        <title>if 语句 - OpenResty C 语言编码风格指南</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html" class="active">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html" class="active"><strong aria-hidden="true">10.</strong> if 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -140,21 +140,105 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#序言" id="序言"><h1>序言</h1></a>
+                        <a class="header" href="#if-语句" id="if-语句"><h1>if 语句</h1></a>
 <blockquote>
-<p>这本手册是在阅读 <a href="http://openresty.org/en/c-coding-style-guide.html">OpenResty® C Coding Style Guide</a> 文章后翻译的。因英语阅读理解能力不好，借此机会学习理解英语、编码风格。</p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#if-statements">点击查看英文原文</a></p>
 </blockquote>
-<p>OpenResty 在它的 C 语言组件中遵循 NGINX 的编码风格，如 OpenResty 自己的 NGINX 模块和 Lua 库的 C 语言部分。遗憾的是，即使是 NGINX 自己的核心 C 源码也没能严格的遵守与其他基础代码相同的编码风格。所以希望准备一份正式指南，以避免歧义。</p>
-<p>贡献给 OpenResty 核心项目的补丁应始终遵循这份指南，不然它将无法通过代码检查，也无法按原样合并。在使用 C 开发自己的模块和库时，OpenResty 和 NGINX 社区始终鼓励遵循这份指南。</p>
+<p>NGINX 在使用 C <code>if</code> 语句的时候会有一些风格要求。</p>
+<p>首先，<code>if</code> 关键词之后必须有一个空格符，条件的右圆括号和左花括号之间也有空格符。如下，</p>
+<pre><code class="language-C">if (a &gt; 3) {
+    ...
+}
+</code></pre>
+<p>注意 <code>if</code> 之后和 <code>{</code> 之前<strong>有空格符</strong>，<code>(</code> 之后或 <code>)</code> 之前<strong>没有空格符</strong>。</p>
+<p>另外，左花括号必须与 <code>if</code> 关键词写在同一行，除非超过 80 个字符。
+在这种情况下我们应将条件分成多行，并把左花括号单独写成一行。
+以下示例演示了这点：</p>
+<pre><code class="language-C">            if (ngx_http_set_default_types(cf, prev_keys, default_types)
+                != NGX_OK)
+            {
+                return NGX_CONF_ERROR;
+            }
+</code></pre>
+<p>注意 <code>!= OK</code> 与条件部分是如何垂直对齐的。（不包括 <code>if</code> 语句的 <code>(</code> 字符）</p>
+<p>当逻辑运算符涉及长条件的某一部分时，我们应该确保逻辑运算符在后续行的开头，并且缩进反映了条件表达式的嵌套结构，如下：</p>
+<pre><code class="language-C">        if (file-&gt;use_event
+            || (file-&gt;event == NULL
+                &amp;&amp; (of-&gt;uniq == 0 || of-&gt;uniq == file-&gt;uniq)
+                &amp;&amp; now - file-&gt;created &lt; of-&gt;valid
+#if (NGX_HAVE_OPENAT)
+                &amp;&amp; of-&gt;disable_symlinks == file-&gt;disable_symlinks
+                &amp;&amp; of-&gt;disable_symlinks_from == file-&gt;disable_symlinks_from
+#endif
+            ))
+        {
+            ...
+        }
+</code></pre>
+<p>我们可以忽略中间的宏指令，它们与 <code>if</code> 语句编码风格无关。</p>
+<p>如果 <code>if</code> 语句块之后有其他语句，我们应该在它们之间留一个空行。例如：</p>
+<pre><code class="language-C">        if (rc != NGX_OK &amp;&amp; (of-&gt;err == 0 || !of-&gt;errors)) {
+            goto failed;
+        }
+
+        if (of-&gt;is_dir) {
+            ...
+        }
+</code></pre>
+<p>请注意如何使用空行来分隔连续的 <code>if</code> 语句块。或者其他语句：</p>
+<pre><code class="language-C">        if (file-&gt;is_dir) {
+
+            /*
+             * chances that directory became file are very small
+             * so test_dir flag allows to use a single syscall
+             * in ngx_file_info() instead of three syscalls
+             */
+
+            of-&gt;test_dir = 1;
+        }
+
+        of-&gt;fd = file-&gt;fd;
+        of-&gt;uniq = file-&gt;uniq;
+</code></pre>
+<p>同样的，在 <code>if</code> 语句之前通常也会有个空行，如下：</p>
+<pre><code class="language-C">        rc = ngx_open_and_stat_file(name, of, pool-&gt;log);
+
+        if (rc != NGX_OK &amp;&amp; (of-&gt;err == 0 || !of-&gt;errors)) {
+            goto failed;
+        }
+</code></pre>
+<p>在这些代码块周围使用空行，使得代码没那么拥挤。这同样适用于 <code>while</code>, <code>for</code> 等语句。</p>
+<p><code>if</code> 语句必须始终使用花括号，即使 &quot;then&quot; 分支只有一条语句。例如：</p>
+<pre><code class="language-C">            if (file-&gt;is_dir || file-&gt;err) {
+                goto update;
+            }
+</code></pre>
+<p>即使在标准 C 语言允许的情况下，我们也不能忽略花括号。</p>
+<a class="header" href="#else-语句" id="else-语句"><h2>else 语句</h2></a>
+<p>当 <code>if</code> 语句使用 <code>else</code> 分支时，它也必须用花括号来对包含的语句进行分组。同样的，空行必须在 <code>} else {</code> 之前。例如：</p>
+<pre><code class="language-C">    if (of-&gt;disable_symlinks == NGX_DISABLE_SYMLINKS_NOTOWNER
+        &amp;&amp; !(create &amp; (NGX_FILE_CREATE_OR_OPEN|NGX_FILE_TRUNCATE)))
+    {
+        fd = ngx_openat_file_owner(at_fd, p, mode, create, access, log);
+
+    } else {
+        fd = ngx_openat_file(at_fd, p, mode|NGX_FILE_NOFOLLOW, create, access);
+    }
+</code></pre>
+<p>注意 <code>} else {</code> 是如何放在同一行上的，并且在 <code>} else {</code> 之前有一个空行。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="ch-09-type-casting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="ch-01-naming-convention.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch-00-links.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -166,9 +250,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="ch-09-type-casting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="ch-01-naming-convention.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="ch-00-links.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

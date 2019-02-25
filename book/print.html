@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -177,7 +177,7 @@
 <a class="header" href="#80-行宽限制" id="80-行宽限制"><h1>80 行宽限制</h1></a>
 <p>每一行源码都应保持在 80 个字符宽度以内（NGINX 核心中一些代码保持在 78，而我建议将 80 作为硬性限制）。在连接多行的情况中，不同的上下文将有不同的缩进规则。我们将在接下来的内容中详细讨论每个案例。</p>
 <a class="header" href="#行尾空白符" id="行尾空白符"><h1>行尾空白符</h1></a>
-<p>每行源码的结尾不应该有<strong>空格符</strong>和<strong>制表符</strong>，即使是空白行。大多数编辑器支持自动高亮或移除这样的空白符。确保正确地配置编辑器或者 IDE。</p>
+<p>每行源码的结尾不应该有<strong>空格符</strong>和<strong>制表符</strong>，即使是空行。大多数编辑器支持自动高亮或移除这样的空白符。确保正确地配置编辑器或者 IDE。</p>
 <a class="header" href="#函数声明" id="函数声明"><h1>函数声明</h1></a>
 <p>C 函数声明（不是定义）尽可能编辑成一行，不论是在头文件或 <code>.c</code> 文件的头部中。以下是 NGINX 核心的例子：</p>
 <pre><code class="language-c">ngx_int_t ngx_http_send_special(ngx_http_request_t *r, ngx_uint_t flags);
@@ -258,6 +258,211 @@ ngx_sprintf(u_char *buf, const char *fmt, ...)
 }
 </code></pre>
 <p>在局部变量定义之后跟着一个空行。</p>
+<a class="header" href="#空行使用" id="空行使用"><h1>空行使用</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#use-of-blank-lines">点击查看英文原文</a></p>
+</blockquote>
+<p>连续的 C 函数定义、多行全局/静态变量、结构体/联合/枚举定义必须使用 2 个空行分隔。以下是连续的 C 函数定义示例：</p>
+<pre><code class="language-c">void
+foo(void)
+{
+    /* ... */
+}
+
+
+int
+bar(...)
+{
+    /* ... */
+}
+</code></pre>
+<p>连续的静态变量定义示例：</p>
+<pre><code class="language-C">static ngx_conf_bitmask_t  ngx_http_core_keepalive_disable[] = {
+    ...
+    { ngx_null_string, 0 }
+};
+
+
+static ngx_path_init_t  ngx_http_client_temp_path = {
+    ngx_string(NGX_HTTP_CLIENT_TEMP_PATH), { 0, 0, 0 }
+};
+</code></pre>
+<p>单行变量定义可以紧靠在一起，如下：</p>
+<pre><code class="language-C">static ngx_str_t  ngx_http_gzip_no_cache = ngx_string(&quot;no-cache&quot;);
+static ngx_str_t  ngx_http_gzip_no_store = ngx_string(&quot;no-store&quot;);
+static ngx_str_t  ngx_http_gzip_private = ngx_string(&quot;private&quot;);
+</code></pre>
+<p>以下是连续的结构体定义示例：</p>
+<pre><code class="language-C">struct ngx_http_log_ctx_s {
+    ngx_connection_t    *connection;
+    ngx_http_request_t  *request;
+    ngx_http_request_t  *current_request;
+};
+
+
+struct ngx_http_chunked_s {
+    ngx_uint_t           state;
+    off_t                size;
+    off_t                length;
+};
+
+
+typedef struct {
+    ngx_uint_t           http_version;
+    ngx_uint_t           code;
+    ngx_uint_t           count;
+    u_char              *start;
+    u_char              *end;
+} ngx_http_status_t;
+</code></pre>
+<p>它们全由 2 个空行分隔。</p>
+<p>如果它们附近有些不同类型的顶级对象定义，也要用 2 个空行分隔，例如：</p>
+<pre><code class="language-C">#if (NGX_HTTP_DEGRADATION)
+ngx_uint_t  ngx_http_degraded(ngx_http_request_t *);
+#endif
+
+
+extern ngx_module_t  ngx_http_module;
+</code></pre>
+<p>静态函数声明遵循 C 全局变量声明规则，也使用 2 个空行分隔。但连续的 C 函数声明无需如此，例如：</p>
+<pre><code class="language-C">ngx_int_t ngx_http_discard_request_body(ngx_http_request_t *r);
+void ngx_http_discarded_request_body_handler(ngx_http_request_t *r);
+void ngx_http_block_reading(ngx_http_request_t *r);
+void ngx_http_test_reading(ngx_http_request_t *r);
+</code></pre>
+<p>即便有些 C 函数声明跨多行也是如此，例如：</p>
+<pre><code class="language-C">char *ngx_http_merge_types(ngx_conf_t *cf, ngx_array_t **keys,
+    ngx_hash_t *types_hash, ngx_array_t **prev_keys,
+    ngx_hash_t *prev_types_hash, ngx_str_t *default_types);
+ngx_int_t ngx_http_set_default_types(ngx_conf_t *cf, ngx_array_t **types,
+    ngx_str_t *default_type);
+</code></pre>
+<p>有时也会用 2 个空行，按照语义进行分隔，以提高代码的可读性，例如：</p>
+<pre><code class="language-C">ngx_int_t ngx_http_send_header(ngx_http_request_t *r);
+ngx_int_t ngx_http_special_response_handler(ngx_http_request_t *r,
+    ngx_int_t error);
+ngx_int_t ngx_http_filter_finalize_request(ngx_http_request_t *r,
+    ngx_module_t *m, ngx_int_t error);
+void ngx_http_clean_header(ngx_http_request_t *r);
+
+
+ngx_int_t ngx_http_discard_request_body(ngx_http_request_t *r);
+void ngx_http_discarded_request_body_handler(ngx_http_request_t *r);
+void ngx_http_block_reading(ngx_http_request_t *r);
+void ngx_http_test_reading(ngx_http_request_t *r);
+</code></pre>
+<p>前者大多与<strong>响应头</strong>相关，后者与<strong>请求体</strong>相关。</p>
+<a class="header" href="#类型转换" id="类型转换"><h1>类型转换</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#type-casting">点击查看英文原文</a></p>
+</blockquote>
+<p>将 void 指针 (<code>void *</code>) 赋值给非 void 指针，C 语言是不要求显式类型转换的。NGINX 编码风格中也不要求。例如：</p>
+<pre><code class="language-C">char *
+ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
+{
+    char  *p = conf;
+    ...
+}
+</code></pre>
+<p>上面的 <code>conf</code> 变量是个 void 指针，NGINX 核心将它赋值给 <code>char *</code> 类型的局部变量 <code>p</code>，且没有任何的显式类型转换。</p>
+<p>当需要显式类型转换时，请确保类型名称与 <code>*</code> 字符之间有个空格，<code>)</code> 字符之后有个空格符，例如：</p>
+<pre><code class="language-C">*types = (void *) -1;
+</code></pre>
+<p>在 <code>*)</code> 字符之前有空格符，<code>)</code> 之后也有空格符。这也适用于值类型转换的例子：</p>
+<pre><code class="language-C">if ((size_t) (last - buf) &lt; len) {
+    ...
+}
+</code></pre>
+<p>或者连续的多类型转换：</p>
+<pre><code class="language-C">aio-&gt;aiocb.aio_data = (uint64_t) (uintptr_t) ev;
+</code></pre>
+<p>注意 <code>(uint64_t)</code> 和 <code>(uintptr_t)</code> 之间的空格符，以及 <code>(uintptr_t)</code> 之后的。</p>
+<a class="header" href="#if-语句" id="if-语句"><h1>if 语句</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#if-statements">点击查看英文原文</a></p>
+</blockquote>
+<p>NGINX 在使用 C <code>if</code> 语句的时候会有一些风格要求。</p>
+<p>首先，<code>if</code> 关键词之后必须有一个空格符，条件的右圆括号和左花括号之间也有空格符。如下，</p>
+<pre><code class="language-C">if (a &gt; 3) {
+    ...
+}
+</code></pre>
+<p>注意 <code>if</code> 之后和 <code>{</code> 之前<strong>有空格符</strong>，<code>(</code> 之后或 <code>)</code> 之前<strong>没有空格符</strong>。</p>
+<p>另外，左花括号必须与 <code>if</code> 关键词写在同一行，除非超过 80 个字符。
+在这种情况下我们应将条件分成多行，并把左花括号单独写成一行。
+以下示例演示了这点：</p>
+<pre><code class="language-C">            if (ngx_http_set_default_types(cf, prev_keys, default_types)
+                != NGX_OK)
+            {
+                return NGX_CONF_ERROR;
+            }
+</code></pre>
+<p>注意 <code>!= OK</code> 与条件部分是如何垂直对齐的。（不包括 <code>if</code> 语句的 <code>(</code> 字符）</p>
+<p>当逻辑运算符涉及长条件的某一部分时，我们应该确保逻辑运算符在后续行的开头，并且缩进反映了条件表达式的嵌套结构，如下：</p>
+<pre><code class="language-C">        if (file-&gt;use_event
+            || (file-&gt;event == NULL
+                &amp;&amp; (of-&gt;uniq == 0 || of-&gt;uniq == file-&gt;uniq)
+                &amp;&amp; now - file-&gt;created &lt; of-&gt;valid
+#if (NGX_HAVE_OPENAT)
+                &amp;&amp; of-&gt;disable_symlinks == file-&gt;disable_symlinks
+                &amp;&amp; of-&gt;disable_symlinks_from == file-&gt;disable_symlinks_from
+#endif
+            ))
+        {
+            ...
+        }
+</code></pre>
+<p>我们可以忽略中间的宏指令，它们与 <code>if</code> 语句编码风格无关。</p>
+<p>如果 <code>if</code> 语句块之后有其他语句，我们应该在它们之间留一个空行。例如：</p>
+<pre><code class="language-C">        if (rc != NGX_OK &amp;&amp; (of-&gt;err == 0 || !of-&gt;errors)) {
+            goto failed;
+        }
+
+        if (of-&gt;is_dir) {
+            ...
+        }
+</code></pre>
+<p>请注意如何使用空行来分隔连续的 <code>if</code> 语句块。或者其他语句：</p>
+<pre><code class="language-C">        if (file-&gt;is_dir) {
+
+            /*
+             * chances that directory became file are very small
+             * so test_dir flag allows to use a single syscall
+             * in ngx_file_info() instead of three syscalls
+             */
+
+            of-&gt;test_dir = 1;
+        }
+
+        of-&gt;fd = file-&gt;fd;
+        of-&gt;uniq = file-&gt;uniq;
+</code></pre>
+<p>同样的，在 <code>if</code> 语句之前通常也会有个空行，如下：</p>
+<pre><code class="language-C">        rc = ngx_open_and_stat_file(name, of, pool-&gt;log);
+
+        if (rc != NGX_OK &amp;&amp; (of-&gt;err == 0 || !of-&gt;errors)) {
+            goto failed;
+        }
+</code></pre>
+<p>在这些代码块周围使用空行，使得代码没那么拥挤。这同样适用于 <code>while</code>, <code>for</code> 等语句。</p>
+<p><code>if</code> 语句必须始终使用花括号，即使 &quot;then&quot; 分支只有一条语句。例如：</p>
+<pre><code class="language-C">            if (file-&gt;is_dir || file-&gt;err) {
+                goto update;
+            }
+</code></pre>
+<p>即使在标准 C 语言允许的情况下，我们也不能忽略花括号。</p>
+<a class="header" href="#else-语句" id="else-语句"><h2>else 语句</h2></a>
+<p>当 <code>if</code> 语句使用 <code>else</code> 分支时，它也必须用花括号来对包含的语句进行分组。同样的，空行必须在 <code>} else {</code> 之前。例如：</p>
+<pre><code class="language-C">    if (of-&gt;disable_symlinks == NGX_DISABLE_SYMLINKS_NOTOWNER
+        &amp;&amp; !(create &amp; (NGX_FILE_CREATE_OR_OPEN|NGX_FILE_TRUNCATE)))
+    {
+        fd = ngx_openat_file_owner(at_fd, p, mode, create, access, log);
+
+    } else {
+        fd = ngx_openat_file(at_fd, p, mode|NGX_FILE_NOFOLLOW, create, access);
+    }
+</code></pre>
+<p>注意 <code>} else {</code> 是如何放在同一行上的，并且在 <code>} else {</code> 之前有一个空行。</p>
 <a class="header" href="#参考链接" id="参考链接"><h1>参考链接</h1></a>
 <ul>
 <li><a href="https://github.com/ruanyf/document-style-guide">中文技术文档写作规范</a></li>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>序言 - OpenResty C 语言编码风格指南</title>
+        <title>空行使用 - OpenResty C 语言编码风格指南</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html" class="active">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html" class="active"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -140,21 +140,113 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#序言" id="序言"><h1>序言</h1></a>
+                        <a class="header" href="#空行使用" id="空行使用"><h1>空行使用</h1></a>
 <blockquote>
-<p>这本手册是在阅读 <a href="http://openresty.org/en/c-coding-style-guide.html">OpenResty® C Coding Style Guide</a> 文章后翻译的。因英语阅读理解能力不好，借此机会学习理解英语、编码风格。</p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#use-of-blank-lines">点击查看英文原文</a></p>
 </blockquote>
-<p>OpenResty 在它的 C 语言组件中遵循 NGINX 的编码风格，如 OpenResty 自己的 NGINX 模块和 Lua 库的 C 语言部分。遗憾的是，即使是 NGINX 自己的核心 C 源码也没能严格的遵守与其他基础代码相同的编码风格。所以希望准备一份正式指南，以避免歧义。</p>
-<p>贡献给 OpenResty 核心项目的补丁应始终遵循这份指南，不然它将无法通过代码检查，也无法按原样合并。在使用 C 开发自己的模块和库时，OpenResty 和 NGINX 社区始终鼓励遵循这份指南。</p>
+<p>连续的 C 函数定义、多行全局/静态变量、结构体/联合/枚举定义必须使用 2 个空行分隔。以下是连续的 C 函数定义示例：</p>
+<pre><code class="language-c">void
+foo(void)
+{
+    /* ... */
+}
+
+
+int
+bar(...)
+{
+    /* ... */
+}
+</code></pre>
+<p>连续的静态变量定义示例：</p>
+<pre><code class="language-C">static ngx_conf_bitmask_t  ngx_http_core_keepalive_disable[] = {
+    ...
+    { ngx_null_string, 0 }
+};
+
+
+static ngx_path_init_t  ngx_http_client_temp_path = {
+    ngx_string(NGX_HTTP_CLIENT_TEMP_PATH), { 0, 0, 0 }
+};
+</code></pre>
+<p>单行变量定义可以紧靠在一起，如下：</p>
+<pre><code class="language-C">static ngx_str_t  ngx_http_gzip_no_cache = ngx_string(&quot;no-cache&quot;);
+static ngx_str_t  ngx_http_gzip_no_store = ngx_string(&quot;no-store&quot;);
+static ngx_str_t  ngx_http_gzip_private = ngx_string(&quot;private&quot;);
+</code></pre>
+<p>以下是连续的结构体定义示例：</p>
+<pre><code class="language-C">struct ngx_http_log_ctx_s {
+    ngx_connection_t    *connection;
+    ngx_http_request_t  *request;
+    ngx_http_request_t  *current_request;
+};
+
+
+struct ngx_http_chunked_s {
+    ngx_uint_t           state;
+    off_t                size;
+    off_t                length;
+};
+
+
+typedef struct {
+    ngx_uint_t           http_version;
+    ngx_uint_t           code;
+    ngx_uint_t           count;
+    u_char              *start;
+    u_char              *end;
+} ngx_http_status_t;
+</code></pre>
+<p>它们全由 2 个空行分隔。</p>
+<p>如果它们附近有些不同类型的顶级对象定义，也要用 2 个空行分隔，例如：</p>
+<pre><code class="language-C">#if (NGX_HTTP_DEGRADATION)
+ngx_uint_t  ngx_http_degraded(ngx_http_request_t *);
+#endif
+
+
+extern ngx_module_t  ngx_http_module;
+</code></pre>
+<p>静态函数声明遵循 C 全局变量声明规则，也使用 2 个空行分隔。但连续的 C 函数声明无需如此，例如：</p>
+<pre><code class="language-C">ngx_int_t ngx_http_discard_request_body(ngx_http_request_t *r);
+void ngx_http_discarded_request_body_handler(ngx_http_request_t *r);
+void ngx_http_block_reading(ngx_http_request_t *r);
+void ngx_http_test_reading(ngx_http_request_t *r);
+</code></pre>
+<p>即便有些 C 函数声明跨多行也是如此，例如：</p>
+<pre><code class="language-C">char *ngx_http_merge_types(ngx_conf_t *cf, ngx_array_t **keys,
+    ngx_hash_t *types_hash, ngx_array_t **prev_keys,
+    ngx_hash_t *prev_types_hash, ngx_str_t *default_types);
+ngx_int_t ngx_http_set_default_types(ngx_conf_t *cf, ngx_array_t **types,
+    ngx_str_t *default_type);
+</code></pre>
+<p>有时也会用 2 个空行，按照语义进行分隔，以提高代码的可读性，例如：</p>
+<pre><code class="language-C">ngx_int_t ngx_http_send_header(ngx_http_request_t *r);
+ngx_int_t ngx_http_special_response_handler(ngx_http_request_t *r,
+    ngx_int_t error);
+ngx_int_t ngx_http_filter_finalize_request(ngx_http_request_t *r,
+    ngx_module_t *m, ngx_int_t error);
+void ngx_http_clean_header(ngx_http_request_t *r);
+
+
+ngx_int_t ngx_http_discard_request_body(ngx_http_request_t *r);
+void ngx_http_discarded_request_body_handler(ngx_http_request_t *r);
+void ngx_http_block_reading(ngx_http_request_t *r);
+void ngx_http_test_reading(ngx_http_request_t *r);
+</code></pre>
+<p>前者大多与<strong>响应头</strong>相关，后者与<strong>请求体</strong>相关。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="ch-07-local-variables.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="ch-01-naming-convention.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch-09-type-casting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -166,9 +258,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="ch-07-local-variables.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="ch-01-naming-convention.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="ch-09-type-casting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
