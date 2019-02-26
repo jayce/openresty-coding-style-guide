@@ -1,5 +1,7 @@
 # 函数定义
 
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-definitions)
+
 C 函数定义的风格不同于声明（见[函数声明](./ch-05-function-declarations.md)）。第一行由返回类型独占，第二行是函数名称及参数列表，第三行由左花括号独占。以下是 NGINX 核心的例子：
 
 ```c

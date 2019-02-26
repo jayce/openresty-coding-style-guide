@@ -1,5 +1,7 @@
 # 命名约定
 
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#naming-convention)
+
 NGINX 源代码中的命名规则应该始终使用**完整名称**，包括源码文件名（`.c`, `.h`）、全局变量、全局函数、C struct/union/enum 名称、静态变量-函数以及 `.h` 头文件内的公共宏定义。这一点很重要，因为 C 没有像 C++ 中那样的显式名称空间的概念。使用**完整名称**有助于避免符号冲突和调试。例如： `ngx_http_core_module.c`, `ngx_http_finalize_request`, `NGX_HTTP_MAIN_CONF`。
 
 在 Lua 库的 C 组件中，我们也应该使用类似 `resty_blah_`（如果库名为 `lua-resty-blah`）的字符作为 C 编辑单元中的所有 C 符号的前缀。

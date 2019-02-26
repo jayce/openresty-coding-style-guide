@@ -1,5 +1,7 @@
 # 局部变量
 
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#local-variables)
+
 在[命名约定](./ch-01-naming-convention.md)中要求局部变量使用更短的名称，类似 `ev`, `clcf` 这样的。它们在定义的时候也有一些要求。
 
 它们应总是写在每个 C 函数定义块开始的位置，且不仅仅只在任意代码块开头，除非为了调试或者有其他特殊要求。还有，它们的变量标识符（除 `*` 前缀字符以外），必须垂直对其。以下是 NGINX 核心的示例：

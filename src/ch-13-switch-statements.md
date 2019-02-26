@@ -1,5 +1,7 @@
 # switch 语句
 
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#switch-statements)
+
 `switch` 语句风格与 [if 语句](./ch-10-if-statements.md)章节中的内容类似。在 `switch` 关键词，`{` 字符之后都要求有个空格符。此外，其余语句必须写在花括号内。以下是个例子：
 
 ```C

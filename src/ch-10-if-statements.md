@@ -1,6 +1,6 @@
 # if 语句
 
-> [点击查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#if-statements)
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#if-statements)
 
 NGINX 在使用 C `if` 语句的时候会有一些风格要求。
 

@@ -1,5 +1,7 @@
 # 函数声明
 
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-declarations)
+
 C 函数声明（不是定义）尽可能编辑成一行，不论是在头文件或 `.c` 文件的头部中。以下是 NGINX 核心的例子：
 
 ```c

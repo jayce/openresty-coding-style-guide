@@ -1,6 +1,6 @@
 # 空行使用
 
-> [点击查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#use-of-blank-lines)
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#use-of-blank-lines)
 
 连续的 C 函数定义、多行全局/静态变量、结构体/联合/枚举定义必须使用 2 个空行分隔。以下是连续的 C 函数定义示例：
 

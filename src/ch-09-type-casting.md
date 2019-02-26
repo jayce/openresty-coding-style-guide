@@ -1,6 +1,6 @@
 # 类型转换
 
-> [点击查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#type-casting)
+> [查看英文原文](https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#type-casting)
 
 将 void 指针 (`void *`) 赋值给非 void 指针，C 语言是不要求显式类型转换的。NGINX 编码风格中也不要求。例如：
 
