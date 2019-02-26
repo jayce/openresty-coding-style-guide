@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html" class="active"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html" class="active"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -141,8 +141,11 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#for-语句" id="for-语句"><h1>for 语句</h1></a>
-<p><code>for</code> 语句在很多方面与<a href="./ch-10-if-statements.html">if 语句</a> 章节中的风格类似。
-<code>for</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含语句。而且，还要有个空格在 <code>for</code> 条件部分 <code>;</code> 之后。以下示例演示了这些要求：</p>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#for-statements">查看英文原文</a></p>
+</blockquote>
+<p><code>for</code> 语句风格与 <a href="./ch-10-if-statements.html">if 语句</a> 章节中的内容类似。
+<code>for</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含它的语句。而且，还要有个空格在 <code>for</code> 条件部分 <code>;</code> 之后。以下示例演示了这些要求：</p>
 <pre><code class="language-C">for (i = 0; i &lt; size; i++) {
     ...
 }

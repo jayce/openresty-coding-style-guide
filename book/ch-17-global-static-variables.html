@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>类型转换 - OpenResty C 语言编码风格指南</title>
+        <title>全局/静态变量 - OpenResty C 语言编码风格指南</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html" class="active"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html" class="active"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -140,44 +140,38 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#类型转换" id="类型转换"><h1>类型转换</h1></a>
+                        <a class="header" href="#全局静态变量" id="全局静态变量"><h1>全局/静态变量</h1></a>
 <blockquote>
-<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#type-casting">查看英文原文</a></p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#globalstatic-variables">查看英文原文</a></p>
 </blockquote>
-<p>将 void 指针 (<code>void *</code>) 赋值给非 void 指针，C 语言是不要求显式类型转换的。NGINX 编码风格中也不要求。例如：</p>
-<pre><code class="language-C">char *
-ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
-{
-    char  *p = conf;
-    ...
-}
+<p>在局部变量、顶层静态变量定义和声明时，类型符号和变量标识符之间加至少 2 个空格符（包括前导符 <code>*</code>）。
+以下是些例子：</p>
+<pre><code class="language-C">ngx_uint_t   ngx_http_max_module;
+
+
+ngx_http_output_header_filter_pt  ngx_http_top_header_filter;
+ngx_http_output_body_filter_pt    ngx_http_top_body_filter;
+ngx_http_request_body_filter_pt   ngx_http_top_request_body_filter;
 </code></pre>
-<p>上面的 <code>conf</code> 变量是个 void 指针，NGINX 核心将它赋值给 <code>char *</code> 类型的局部变量 <code>p</code>，且没有任何的显式类型转换。</p>
-<p>当需要显式类型转换时，请确保类型名称与 <code>*</code> 字符之间有个空格，<code>)</code> 字符之后有个空格符，例如：</p>
-<pre><code class="language-C">*types = (void *) -1;
+<p>这同样适用于变量的初始化表达式，如下：</p>
+<pre><code class="language-C">ngx_str_t  ngx_http_html_default_types[] = {
+    ngx_string(&quot;text/html&quot;),
+    ngx_null_string
+};
 </code></pre>
-<p>在 <code>*)</code> 字符之前有空格符，<code>)</code> 之后也有空格符。这也适用于值类型转换的例子：</p>
-<pre><code class="language-C">if ((size_t) (last - buf) &lt; len) {
-    ...
-}
-</code></pre>
-<p>或者连续的多类型转换：</p>
-<pre><code class="language-C">aio-&gt;aiocb.aio_data = (uint64_t) (uintptr_t) ev;
-</code></pre>
-<p>注意 <code>(uint64_t)</code> 和 <code>(uintptr_t)</code> 之间的空格符，以及 <code>(uintptr_t)</code> 之后的。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="ch-08-use-of-blank-lines.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch-16-macros.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="ch-10-if-statements.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch-00-links.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -189,13 +183,13 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="ch-08-use-of-blank-lines.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="ch-16-macros.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="ch-10-if-statements.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="ch-00-links.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -147,6 +147,9 @@
 <p>OpenResty 在它的 C 语言组件中遵循 NGINX 的编码风格，如 OpenResty 自己的 NGINX 模块和 Lua 库的 C 语言部分。遗憾的是，即使是 NGINX 自己的核心 C 源码也没能严格的遵守与其他基础代码相同的编码风格。所以希望准备一份正式指南，以避免歧义。</p>
 <p>贡献给 OpenResty 核心项目的补丁应始终遵循这份指南，不然它将无法通过代码检查，也无法按原样合并。在使用 C 开发自己的模块和库时，OpenResty 和 NGINX 社区始终鼓励遵循这份指南。</p>
 <a class="header" href="#命名约定" id="命名约定"><h1>命名约定</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#naming-convention">查看英文原文</a></p>
+</blockquote>
 <p>NGINX 源代码中的命名规则应该始终使用<strong>完整名称</strong>，包括源码文件名（<code>.c</code>, <code>.h</code>）、全局变量、全局函数、C struct/union/enum 名称、静态变量-函数以及 <code>.h</code> 头文件内的公共宏定义。这一点很重要，因为 C 没有像 C++ 中那样的显式名称空间的概念。使用<strong>完整名称</strong>有助于避免符号冲突和调试。例如： <code>ngx_http_core_module.c</code>, <code>ngx_http_finalize_request</code>, <code>NGX_HTTP_MAIN_CONF</code>。</p>
 <p>在 Lua 库的 C 组件中，我们也应该使用类似 <code>resty_blah_</code>（如果库名为 <code>lua-resty-blah</code>）的字符作为 C 编辑单元中的所有 C 符号的前缀。</p>
 <p>我们在 C 函数中定义局部变量的时候应该使用短名称。在 NGINX 核心代码中有大量常用的短名称，比如：<code>cl</code>, <code>ev</code>, <code>ctx</code>, <code>v</code>, <code>p</code>, <code>q</code> 等等。这些变量一般都是临时的、局部的。根据霍夫曼原则，我们应该在当前上下文环境中使用通用的短名称来避免单行干扰。即使是短名称也应该遵循 NGINX 的约定。除非必要，不要创建自己的约定。并使用有意义的名称。短名称 <code>p</code> 和 <code>q</code> 它们是字符串指针变量的通用名称，在字符串处理上下文环境当中使用。</p>
@@ -173,12 +176,24 @@
 } ngx_pop3_state_e;
 </code></pre>
 <a class="header" href="#代码缩进" id="代码缩进"><h1>代码缩进</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#indentation">查看英文原文</a></p>
+</blockquote>
 <p>NGINX 世界仅使用空格符控制缩进，不使用制表符。一般情况下使用 4 个空格符缩进，除了一些特殊对其要求或其他要求的情况下（稍后将详细描述这些情况）, 请始终使用正确的缩进。</p>
 <a class="header" href="#80-行宽限制" id="80-行宽限制"><h1>80 行宽限制</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#the-80-column-limit">查看英文原文</a></p>
+</blockquote>
 <p>每一行源码都应保持在 80 个字符宽度以内（NGINX 核心中一些代码保持在 78，而我建议将 80 作为硬性限制）。在连接多行的情况中，不同的上下文将有不同的缩进规则。我们将在接下来的内容中详细讨论每个案例。</p>
 <a class="header" href="#行尾空白符" id="行尾空白符"><h1>行尾空白符</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#line-trailing-white-spaces">查看英文原文</a></p>
+</blockquote>
 <p>每行源码的结尾不应该有<strong>空格符</strong>和<strong>制表符</strong>，即使是空行。大多数编辑器支持自动高亮或移除这样的空白符。确保正确地配置编辑器或者 IDE。</p>
 <a class="header" href="#函数声明" id="函数声明"><h1>函数声明</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-declarations">查看英文原文</a></p>
+</blockquote>
 <p>C 函数声明（不是定义）尽可能编辑成一行，不论是在头文件或 <code>.c</code> 文件的头部中。以下是 NGINX 核心的例子：</p>
 <pre><code class="language-c">ngx_int_t ngx_http_send_special(ngx_http_request_t *r, ngx_uint_t flags);
 </code></pre>
@@ -193,6 +208,9 @@
 <p><strong>注意</strong>：函数定义的风格不同于函数声明。更多细节见<a href="./ch-06-function-definitions.html">函数定义</a>。</p>
 </blockquote>
 <a class="header" href="#函数定义" id="函数定义"><h1>函数定义</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-definitions">查看英文原文</a></p>
+</blockquote>
 <p>C 函数定义的风格不同于声明（见<a href="./ch-05-function-declarations.html">函数声明</a>）。第一行由返回类型独占，第二行是函数名称及参数列表，第三行由左花括号独占。以下是 NGINX 核心的例子：</p>
 <pre><code class="language-c">ngx_int_t
 ngx_http_compile_complex_value(ngx_http_compile_complex_value_t *ccv)
@@ -219,6 +237,9 @@ ngx_http_core_pool_size(ngx_conf_t *cf, void *post, void *data)
 }
 </code></pre>
 <a class="header" href="#局部变量" id="局部变量"><h1>局部变量</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#local-variables">查看英文原文</a></p>
+</blockquote>
 <p>在<a href="./ch-01-naming-convention.html">命名约定</a>中要求局部变量使用更短的名称，类似 <code>ev</code>, <code>clcf</code> 这样的。它们在定义的时候也有一些要求。</p>
 <p>它们应总是写在每个 C 函数定义块开始的位置，且不仅仅只在任意代码块开头，除非为了调试或者有其他特殊要求。还有，它们的变量标识符（除 <code>*</code> 前缀字符以外），必须垂直对其。以下是 NGINX 核心的示例：</p>
 <pre><code class="language-C">    ngx_str_t            *value;
@@ -260,7 +281,7 @@ ngx_sprintf(u_char *buf, const char *fmt, ...)
 <p>在局部变量定义之后跟着一个空行。</p>
 <a class="header" href="#空行使用" id="空行使用"><h1>空行使用</h1></a>
 <blockquote>
-<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#use-of-blank-lines">点击查看英文原文</a></p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#use-of-blank-lines">查看英文原文</a></p>
 </blockquote>
 <p>连续的 C 函数定义、多行全局/静态变量、结构体/联合/枚举定义必须使用 2 个空行分隔。以下是连续的 C 函数定义示例：</p>
 <pre><code class="language-c">void
@@ -354,7 +375,7 @@ void ngx_http_test_reading(ngx_http_request_t *r);
 <p>前者大多与<strong>响应头</strong>相关，后者与<strong>请求体</strong>相关。</p>
 <a class="header" href="#类型转换" id="类型转换"><h1>类型转换</h1></a>
 <blockquote>
-<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#type-casting">点击查看英文原文</a></p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#type-casting">查看英文原文</a></p>
 </blockquote>
 <p>将 void 指针 (<code>void *</code>) 赋值给非 void 指针，C 语言是不要求显式类型转换的。NGINX 编码风格中也不要求。例如：</p>
 <pre><code class="language-C">char *
@@ -379,7 +400,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 <p>注意 <code>(uint64_t)</code> 和 <code>(uintptr_t)</code> 之间的空格符，以及 <code>(uintptr_t)</code> 之后的。</p>
 <a class="header" href="#if-语句" id="if-语句"><h1>if 语句</h1></a>
 <blockquote>
-<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#if-statements">点击查看英文原文</a></p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#if-statements">查看英文原文</a></p>
 </blockquote>
 <p>NGINX 在使用 C <code>if</code> 语句的时候会有一些风格要求。</p>
 <p>首先，<code>if</code> 关键词之后必须有一个空格符，条件的右圆括号和左花括号之间也有空格符。如下，</p>
@@ -464,8 +485,11 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 </code></pre>
 <p>注意 <code>} else {</code> 是如何放在同一行上的，并且在 <code>} else {</code> 之前有一个空行。</p>
 <a class="header" href="#for-语句" id="for-语句"><h1>for 语句</h1></a>
-<p><code>for</code> 语句在很多方面与<a href="./ch-10-if-statements.html">if 语句</a> 章节中的风格类似。
-<code>for</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含语句。而且，还要有个空格在 <code>for</code> 条件部分 <code>;</code> 之后。以下示例演示了这些要求：</p>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#for-statements">查看英文原文</a></p>
+</blockquote>
+<p><code>for</code> 语句风格与 <a href="./ch-10-if-statements.html">if 语句</a> 章节中的内容类似。
+<code>for</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含它的语句。而且，还要有个空格在 <code>for</code> 条件部分 <code>;</code> 之后。以下示例演示了这些要求：</p>
 <pre><code class="language-C">for (i = 0; i &lt; size; i++) {
     ...
 }
@@ -486,8 +510,11 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 </code></pre>
 <a class="header" href="#while-语句" id="while-语句"><h1>while 语句</h1></a>
-<p><code>while</code> 语句在很多方面与 <a href="./ch-10-if-statements.html">if 语句</a> 章节中的风格类似。
-在 <code>for</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含语句。以下是个例子：</p>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#while-statements">查看英文原文</a></p>
+</blockquote>
+<p><code>while</code> 语句风格与 <a href="./ch-10-if-statements.html">if 语句</a>章节中的内容类似。
+在 <code>while</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含它的语句。以下是个例子：</p>
 <pre><code class="language-C">    while (log-&gt;next) {
         if (new_log-&gt;log_level &gt; log-&gt;next-&gt;log_level) {
             new_log-&gt;next = log-&gt;next;
@@ -509,6 +536,114 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         } while (p != end);
 </code></pre>
 <p>注意 <code>do</code> 和 <code>{</code> 之间的空格符，以及 <code>while</code> 前后的空格符。</p>
+<a class="header" href="#switch-语句" id="switch-语句"><h1>switch 语句</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#switch-statements">查看英文原文</a></p>
+</blockquote>
+<p><code>switch</code> 语句风格与 <a href="./ch-10-if-statements.html">if 语句</a>章节中的内容类似。在 <code>switch</code> 关键词，<code>{</code> 字符之后都要求有个空格符。此外，其余语句必须写在花括号内。以下是个例子：</p>
+<pre><code class="language-C">    switch (unit) {
+    case 'K':
+    case 'k':
+        len--;
+        max = NGX_MAX_SIZE_T_VALUE / 1024;
+        scale = 1024;
+        break;
+
+    case 'M':
+    case 'm':
+        len--;
+        max = NGX_MAX_SIZE_T_VALUE / (1024 * 1024);
+        scale = 1024 * 1024;
+        break;
+
+    default:
+        max = NGX_MAX_SIZE_T_VALUE;
+        scale = 1;
+    }
+</code></pre>
+<p>注意 <code>case</code> 标签与 <code>switch</code> 关键词是如何垂直对其的。</p>
+<p>有时会在第一个 <code>case</code> 标签行前面留一个空行，如下：</p>
+<pre><code class="language-C">        switch (c-&gt;log_error) {
+
+        case NGX_ERROR_IGNORE_EINVAL:
+        case NGX_ERROR_IGNORE_ECONNRESET:
+        case NGX_ERROR_INFO:
+            level = NGX_LOG_INFO;
+            break;
+
+        default:
+            level = NGX_LOG_ERR;
+        }
+</code></pre>
+<a class="header" href="#处理内存分配错误" id="处理内存分配错误"><h1>处理内存分配错误</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#allocation-error-handling">查看英文原文</a></p>
+</blockquote>
+<p>在 NGINX 世界里一直有个好习惯，在任何时候都会检查内存分配失败。像这样：</p>
+<pre><code class="language-C">    sa = ngx_palloc(cf-&gt;pool, socklen);
+    if (sa == NULL) {
+        return NULL;
+    }
+</code></pre>
+<p>这两条语句经常一起出现，所以我们就没有在分配语句与 <code>if</code> 语句之间加空行。</p>
+<p>确保不要省略动态内存分配语句后的 <code>if</code> 语句。</p>
+<a class="header" href="#函数调用" id="函数调用"><h1>函数调用</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-calls">查看英文原文</a></p>
+</blockquote>
+<p>C 函数调用时，不应该在参数列表的括号周围加空格符。以下是个例子：</p>
+<pre><code class="language-C">sa = ngx_palloc(cf-&gt;pool, socklen);
+</code></pre>
+<p>在函数调用超过 80 个字符宽度时，应该将参数列表拆成独立的行。而后续的行必须与第一个参数垂直对其，如下：</p>
+<pre><code class="language-C">        buf-&gt;pos = ngx_slprintf(buf-&gt;start, buf-&gt;end, &quot;MEMLOG %uz %V:%ui%N&quot;,
+                                size, &amp;cf-&gt;conf_file-&gt;file.name,
+                                cf-&gt;conf_file-&gt;line);
+</code></pre>
+<a class="header" href="#宏" id="宏"><h1>宏</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#macros">查看英文原文</a></p>
+</blockquote>
+<p>宏定义要求在指令 <code>#define</code> 之后有一个空格符，而在定义主体部分之前至少有 2 个空格符。例如：</p>
+<pre><code class="language-C">#define F(x, y, z)  ((z) ^ ((x) &amp; ((y) ^ (z))))
+</code></pre>
+<p>有时会在定义主体部分之前使用更多空格，目的是为了将多个密切相关的宏定义垂直对齐，如：</p>
+<pre><code class="language-C">#define NGX_RESOLVE_A         1
+#define NGX_RESOLVE_CNAME     5
+#define NGX_RESOLVE_PTR       12
+#define NGX_RESOLVE_MX        15
+#define NGX_RESOLVE_TXT       16
+#define NGX_RESOLVE_AAAA      28
+#define NGX_RESOLVE_SRV       33
+#define NGX_RESOLVE_DNAME     39
+#define NGX_RESOLVE_FORMERR   1
+#define NGX_RESOLVE_SERVFAIL  2
+</code></pre>
+<p>对于跨越多行的宏定义，应该把连续字符 <code>\</code> 纵向对齐成一条直线，如：</p>
+<pre><code class="language-C">#define ngx_conf_init_value(conf, default)                                   \
+    if (conf == NGX_CONF_UNSET) {                                            \
+        conf = default;                                                      \
+    }
+</code></pre>
+<p>我们推荐将 <code>\</code> 放在第 78 个字符的位置，尽管 NGINX 核心有时没这么做。</p>
+<a class="header" href="#全局静态变量" id="全局静态变量"><h1>全局/静态变量</h1></a>
+<blockquote>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#globalstatic-variables">查看英文原文</a></p>
+</blockquote>
+<p>在局部变量、顶层静态变量定义和声明时，类型符号和变量标识符之间加至少 2 个空格符（包括前导符 <code>*</code>）。
+以下是些例子：</p>
+<pre><code class="language-C">ngx_uint_t   ngx_http_max_module;
+
+
+ngx_http_output_header_filter_pt  ngx_http_top_header_filter;
+ngx_http_output_body_filter_pt    ngx_http_top_body_filter;
+ngx_http_request_body_filter_pt   ngx_http_top_request_body_filter;
+</code></pre>
+<p>这同样适用于变量的初始化表达式，如下：</p>
+<pre><code class="language-C">ngx_str_t  ngx_http_html_default_types[] = {
+    ngx_string(&quot;text/html&quot;),
+    ngx_null_string
+};
+</code></pre>
 <a class="header" href="#参考链接" id="参考链接"><h1>参考链接</h1></a>
 <ul>
 <li><a href="https://github.com/ruanyf/document-style-guide">中文技术文档写作规范</a></li>
