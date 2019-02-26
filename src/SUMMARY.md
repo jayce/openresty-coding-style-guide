@@ -18,11 +18,11 @@ OpenResty C 语言编码风格指南
 - [switch 语句](ch-13-switch-statements.md)
 - [处理内存分配错误](ch-14-allocation-error-handling.md)
 - [函数调用](ch-15-function-calls.md)
+- [宏](ch-16-macros.md)
 
 [参考链接](ch-00-links.md)
 
 <!--
-- [宏](ch-16-macros.md)
 - [全局变量](ch-17-global-static-variables.md)
 - [一元表达式](ch-18-unary-operators.md)
 - [二元表达式](ch-19-binary-operators.md)
