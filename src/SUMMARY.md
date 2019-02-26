@@ -15,11 +15,11 @@ OpenResty C 语言编码风格指南
 - [if 语句](ch-10-if-statements.md)
 - [for 语句](ch-11-for-statements.md)
 - [while 语句](ch-12-while-statements.md)
+- [switch 语句](ch-13-switch-statements.md)
 
 [参考链接](ch-00-links.md)
 
 <!--
-- [switch 语句](ch-13-switch-statements.md)
 - [内存分配错误处理](ch-14-allocation-error-handling.md)
 - [函数调用](ch-15-function-calls.md)
 - [宏](ch-16-macros.md)
