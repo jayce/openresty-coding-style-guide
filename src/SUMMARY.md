@@ -20,13 +20,11 @@ OpenResty C 语言编码风格指南
 - [函数调用](ch-15-function-calls.md)
 - [宏](ch-16-macros.md)
 - [全局/静态变量](ch-17-global-static-variables.md)
+- [运算符](ch-18-operators.md)
 
 [参考链接](ch-00-links.md)
 
 <!--
-- [一元表达式](ch-18-unary-operators.md)
-- [二元表达式](ch-19-binary-operators.md)
-- [三元表达式](ch-20-ternary-operators.md)
 - [struct/union/enum 定义](ch-21-struct-union-enum-definitions.md)
 - [类型定义](ch-22-typedef-definitions.md)
 - [goto 语句](ch-23-goto-statements-and-code-labels.md)
