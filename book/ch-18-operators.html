@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>while 语句 - OpenResty C 语言编码风格指南</title>
+        <title>运算符 - OpenResty C 语言编码风格指南</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html" class="active"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li><a href="ch-18-operators.html"><strong aria-hidden="true">18.</strong> 运算符</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">19.</strong> 结构体/联合/枚举定义</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li><a href="ch-18-operators.html" class="active"><strong aria-hidden="true">18.</strong> 运算符</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">19.</strong> 结构体/联合/枚举定义</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -140,46 +140,53 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#while-语句" id="while-语句"><h1>while 语句</h1></a>
+                        <a class="header" href="#运算符" id="运算符"><h1>运算符</h1></a>
 <blockquote>
-<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#while-statements">查看英文原文</a></p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#operators">查看英文原文</a></p>
 </blockquote>
-<p><code>while</code> 语句风格与 <a href="./ch-10-if-statements.html">if 语句</a>章节中的内容类似。
-在 <code>while</code> 关键词之后，<code>{</code> 字符之后都要求有个空格符。此外，必须用花括号包含它的语句。以下是个例子：</p>
-<pre><code class="language-C">    while (log-&gt;next) {
-        if (new_log-&gt;log_level &gt; log-&gt;next-&gt;log_level) {
-            new_log-&gt;next = log-&gt;next;
-            log-&gt;next = new_log;
-            return;
-        }
-
-        log = log-&gt;next;
-    }
+<a class="header" href="#二元运算符" id="二元运算符"><h2>二元运算符</h2></a>
+<p>在大多数 C 的二元运算符前后，都要加个空格符，比如：四则运算符、位运算符、关系运算符、逻辑运算符。以下是些例子：</p>
+<pre><code class="language-C"> yday = days - (365 * year + year / 4 - year / 100 + year / 400);
 </code></pre>
-<p><code>do-while</code> 语句也是类似：</p>
-<pre><code class="language-C">        do {
-            p = h2c-&gt;state.handler(h2c, p, end);
-
-            if (p == NULL) {
-                return;
-            }
-
-        } while (p != end);
+<p>还有</p>
+<pre><code class="language-C">if (*p &gt;= '0' &amp;&amp; *p &lt;= '9') {
 </code></pre>
-<p>注意 <code>do</code> 和 <code>{</code> 之间的空格符，以及 <code>while</code> 前后的空格符。</p>
+<p>对于结构体、联合成员运算符 <code>-&gt;</code> 和 <code>.</code>的前后，是不允许有空格符的。例如：</p>
+<pre><code class="language-C">ls = cycle-&gt;listening.elts;
+</code></pre>
+<p>至于逗号，应该在它的后面加个空格符：</p>
+<pre><code class="language-C">for (p = pool, n = pool-&gt;d.next; /* void */; p = n, n = n-&gt;d.next) {
+</code></pre>
+<p>NGINX 通常只在 <code>for</code> 语句条件上下文、多个类型相同的变量声明当中使用逗号。而在其他情况下，最好将逗号表达式拆分成独立的语句。</p>
+<a class="header" href="#一元运算符" id="一元运算符"><h2>一元运算符</h2></a>
+<p>通常在前缀一元运算符的前后是不加空格的。以下是些例子：</p>
+<pre><code class="language-C">for (p = salt; *p &amp;&amp; *p != '$' &amp;&amp; p &lt; last; p++) { /* void */ }
+</code></pre>
+<pre><code class="language-C">#define SET(n)      (*(uint32_t *) &amp;p[n * 4])
+</code></pre>
+<p>请注意，我们没有在一元运算符 <code>*</code> 或 <code>&amp;</code> 的前后加任何空格符（在上面第二个例子中 <code>&amp;</code> 之前加空格符，是因为类型转换表达式而添加的，见<a href="./ch-09-type-casting.html">类型转换</a>）。</p>
+<p>这规则同样适用于后缀一元运算符：</p>
+<pre><code class="language-C">for (value = 0; n--; line++) {
+</code></pre>
+<a class="header" href="#三元运算符" id="三元运算符"><h2>三元运算符</h2></a>
+<p>三元运算符也要求在运算符的前后加个空格符，就像二元运算符那样。例如：</p>
+<pre><code class="language-C">node = (rc &lt; 0) ? node-&gt;left : node-&gt;right;
+</code></pre>
+<p>正如在这个例子中看到的那样，三元运算符的条件部分是个表达式时，可以给它加一对圆括号。
+虽然不要求这样，但这么做可使逻辑更为清晰。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="ch-11-for-statements.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch-17-global-static-variables.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="ch-13-switch-statements.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch-19-struct-union-enum-definitions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -191,13 +198,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="ch-11-for-statements.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="ch-17-global-static-variables.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="ch-13-switch-statements.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="ch-19-struct-union-enum-definitions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
