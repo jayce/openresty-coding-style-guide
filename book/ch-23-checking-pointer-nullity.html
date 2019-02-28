@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>处理内存分配错误 - OpenResty C 语言编码风格指南</title>
+        <title>检查无效指针 - OpenResty C 语言编码风格指南</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html" class="active"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li><a href="ch-18-operators.html"><strong aria-hidden="true">18.</strong> 运算符</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">19.</strong> 结构体/联合/枚举定义</a></li><li><a href="ch-20-typedef-definitions.html"><strong aria-hidden="true">20.</strong> 类型定义</a></li><li><a href="ch-21-tools.html"><strong aria-hidden="true">21.</strong> 工具</a></li><li><a href="ch-22-goto-statements-and-code-labels.html"><strong aria-hidden="true">22.</strong> goto 语句</a></li><li><a href="ch-23-checking-pointer-nullity.html"><strong aria-hidden="true">23.</strong> 检查无效指针</a></li><li><a href="ch-24-author.html"><strong aria-hidden="true">24.</strong> 作者</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li><a href="ch-18-operators.html"><strong aria-hidden="true">18.</strong> 运算符</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">19.</strong> 结构体/联合/枚举定义</a></li><li><a href="ch-20-typedef-definitions.html"><strong aria-hidden="true">20.</strong> 类型定义</a></li><li><a href="ch-21-tools.html"><strong aria-hidden="true">21.</strong> 工具</a></li><li><a href="ch-22-goto-statements-and-code-labels.html"><strong aria-hidden="true">22.</strong> goto 语句</a></li><li><a href="ch-23-checking-pointer-nullity.html" class="active"><strong aria-hidden="true">23.</strong> 检查无效指针</a></li><li><a href="ch-24-author.html"><strong aria-hidden="true">24.</strong> 作者</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -140,31 +140,31 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#处理内存分配错误" id="处理内存分配错误"><h1>处理内存分配错误</h1></a>
+                        <a class="header" href="#检查无效指针" id="检查无效指针"><h1>检查无效指针</h1></a>
 <blockquote>
-<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#allocation-error-handling">查看英文原文</a></p>
+<p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#checking-pointer-nullity">查看英文原文</a></p>
 </blockquote>
-<p>在 NGINX 世界里一直有个好习惯，在任何时候都会检查内存分配失败。像这样：</p>
-<pre><code class="language-C">    sa = ngx_palloc(cf-&gt;pool, socklen);
-    if (sa == NULL) {
-        return NULL;
-    }
+<p>在 NGINX 世界中，我们通常使用 <code>p == NULL</code> 替代 <code>!p</code> 来检查指针值是否为 <code>NULL</code>。尽可能遵循此约定。
+另外，还建议使用 <code>p != NULL</code> 替代 <code>p</code> 来检查相反的情况，不过在这种情况下简单地用 <code>p</code> 进行检查也没关系。</p>
+<p>以下是些例子：</p>
+<pre><code class="language-C">if (addrs != NULL) {
 </code></pre>
-<p>这两条语句经常一起出现，所以我们就没有在分配语句与 <code>if</code> 语句之间加空行。</p>
-<p>确保不要省略动态内存分配语句后的 <code>if</code> 语句。</p>
+<pre><code class="language-C">if (name == NULL) {
+</code></pre>
+<p>对 <code>NULL</code> 的检查通常会更清楚地了解这个值的意思，从而有助于提高代码可读性。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="ch-13-switch-statements.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch-22-goto-statements-and-code-labels.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="ch-15-function-calls.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch-24-author.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -176,13 +176,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="ch-13-switch-statements.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="ch-22-goto-statements-and-code-labels.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="ch-15-function-calls.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="ch-24-author.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
