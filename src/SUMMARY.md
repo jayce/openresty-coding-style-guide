@@ -22,11 +22,10 @@ OpenResty C 语言编码风格指南
 - [全局/静态变量](ch-17-global-static-variables.md)
 - [运算符](ch-18-operators.md)
 - [结构体/联合/枚举定义](ch-19-struct-union-enum-definitions.md)
+- [类型定义](ch-20-typedef-definitions.md)
+- [工具](ch-21-tools.md)
+- [goto 语句](ch-22-goto-statements-and-code-labels.md)
+- [检查无效指针](ch-23-checking-pointer-nullity.md)
+- [作者](ch-24-author.md)
 
 [参考链接](ch-00-links.md)
-
-<!--
-- [类型定义](ch-22-typedef-definitions.md)
-- [goto 语句](ch-23-goto-statements-and-code-labels.md)
-- [检查无效指针](ch-24-checking-pointer-nullity.md)
--->
