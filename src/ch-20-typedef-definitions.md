@@ -10,7 +10,7 @@ typedef u_int  aio_context_t;
 
 在把一组 `typedef` 定义放在一起时，需 2 个以上的空格符。另外，出于美观的角度将它们纵向对其会更好，如下：
 
-```
+```C
 typedef struct ngx_module_s          ngx_module_t;
 typedef struct ngx_conf_s            ngx_conf_t;
 typedef struct ngx_cycle_s           ngx_cycle_t;

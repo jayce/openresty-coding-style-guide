@@ -1,9 +1,13 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>OpenResty C 语言编码风格指南</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,11 +34,11 @@
 
         
     </head>
-    <body class="light">
+    <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -56,10 +60,13 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme + ' js';
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -75,7 +82,10 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="ch-00-introduction.html">序言</a></li><li><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li><a href="ch-18-operators.html"><strong aria-hidden="true">18.</strong> 运算符</a></li><li><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">19.</strong> 结构体/联合/枚举定义</a></li><li><a href="ch-20-typedef-definitions.html"><strong aria-hidden="true">20.</strong> 类型定义</a></li><li><a href="ch-21-tools.html"><strong aria-hidden="true">21.</strong> 工具</a></li><li><a href="ch-22-goto-statements-and-code-labels.html"><strong aria-hidden="true">22.</strong> goto 语句</a></li><li><a href="ch-23-checking-pointer-nullity.html"><strong aria-hidden="true">23.</strong> 检查无效指针</a></li><li><a href="ch-24-author.html"><strong aria-hidden="true">24.</strong> 作者</a></li><li class="affix"><a href="ch-00-links.html">参考链接</a></li></ol>
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded affix "><a href="ch-00-introduction.html">序言</a></li><li class="expanded "><a href="ch-01-naming-convention.html"><strong aria-hidden="true">1.</strong> 命名约定</a></li><li class="expanded "><a href="ch-02-indentation.html"><strong aria-hidden="true">2.</strong> 代码缩进</a></li><li class="expanded "><a href="ch-03-the-80-column-limit.html"><strong aria-hidden="true">3.</strong> 行宽限制</a></li><li class="expanded "><a href="ch-04-line-trailing-white-spaces.html"><strong aria-hidden="true">4.</strong> 行尾空白符</a></li><li class="expanded "><a href="ch-05-function-declarations.html"><strong aria-hidden="true">5.</strong> 函数声明</a></li><li class="expanded "><a href="ch-06-function-definitions.html"><strong aria-hidden="true">6.</strong> 函数定义</a></li><li class="expanded "><a href="ch-07-local-variables.html"><strong aria-hidden="true">7.</strong> 局部变量</a></li><li class="expanded "><a href="ch-08-use-of-blank-lines.html"><strong aria-hidden="true">8.</strong> 空行使用</a></li><li class="expanded "><a href="ch-09-type-casting.html"><strong aria-hidden="true">9.</strong> 类型转换</a></li><li class="expanded "><a href="ch-10-if-statements.html"><strong aria-hidden="true">10.</strong> if 语句</a></li><li class="expanded "><a href="ch-11-for-statements.html"><strong aria-hidden="true">11.</strong> for 语句</a></li><li class="expanded "><a href="ch-12-while-statements.html"><strong aria-hidden="true">12.</strong> while 语句</a></li><li class="expanded "><a href="ch-13-switch-statements.html"><strong aria-hidden="true">13.</strong> switch 语句</a></li><li class="expanded "><a href="ch-14-allocation-error-handling.html"><strong aria-hidden="true">14.</strong> 处理内存分配错误</a></li><li class="expanded "><a href="ch-15-function-calls.html"><strong aria-hidden="true">15.</strong> 函数调用</a></li><li class="expanded "><a href="ch-16-macros.html"><strong aria-hidden="true">16.</strong> 宏</a></li><li class="expanded "><a href="ch-17-global-static-variables.html"><strong aria-hidden="true">17.</strong> 全局/静态变量</a></li><li class="expanded "><a href="ch-18-operators.html"><strong aria-hidden="true">18.</strong> 运算符</a></li><li class="expanded "><a href="ch-19-struct-union-enum-definitions.html"><strong aria-hidden="true">19.</strong> 结构体/联合/枚举定义</a></li><li class="expanded "><a href="ch-20-typedef-definitions.html"><strong aria-hidden="true">20.</strong> 类型定义</a></li><li class="expanded "><a href="ch-21-tools.html"><strong aria-hidden="true">21.</strong> 工具</a></li><li class="expanded "><a href="ch-22-goto-statements-and-code-labels.html"><strong aria-hidden="true">22.</strong> goto 语句</a></li><li class="expanded "><a href="ch-23-checking-pointer-nullity.html"><strong aria-hidden="true">23.</strong> 检查无效指针</a></li><li class="expanded "><a href="ch-24-author.html"><strong aria-hidden="true">24.</strong> 作者</a></li><li class="expanded affix "><a href="ch-00-links.html">参考链接</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -105,7 +115,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">OpenResty C 语言编码风格指南</h1> 
+                        <h1 class="menu-title">OpenResty C 语言编码风格指南</h1>
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -140,13 +150,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#序言" id="序言"><h1>序言</h1></a>
+                        <h1><a class="header" href="#序言" id="序言">序言</a></h1>
 <blockquote>
 <p>译者：这份指南是在阅读 <a href="http://openresty.org/en/c-coding-style-guide.html">OpenResty® C Coding Style Guide</a> 文章后翻译的。借此机会学习与理解英语、NGINX 编码风格。</p>
 </blockquote>
 <p>OpenResty 在它的 C 语言组件中遵循 NGINX 的编码风格，如 OpenResty 自己的 NGINX 模块和 Lua 库的 C 语言部分。遗憾的是，即使是 NGINX 自己的核心 C 源码也没能严格的遵守与其他代码库相同的编码风格。所以希望准备一份正式指导手册，以避免产生歧义。</p>
 <p>贡献给 OpenResty 核心项目的补丁应始终遵循这份指南，不然它将无法通过代码检查，也无法按原样合并。在使用 C 开发自己的模块和库时，OpenResty 和 NGINX 社区始终鼓励遵循这份指南。</p>
-<a class="header" href="#命名约定" id="命名约定"><h1>命名约定</h1></a>
+<h1><a class="header" href="#命名约定" id="命名约定">命名约定</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#naming-convention">查看英文原文</a></p>
 </blockquote>
@@ -175,22 +185,22 @@
     ngx_pop3_auth_external
 } ngx_pop3_state_e;
 </code></pre>
-<a class="header" href="#代码缩进" id="代码缩进"><h1>代码缩进</h1></a>
+<h1><a class="header" href="#代码缩进" id="代码缩进">代码缩进</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#indentation">查看英文原文</a></p>
 </blockquote>
 <p>NGINX 世界仅使用空格符控制缩进，不使用制表符。一般情况下使用 4 个空格符缩进，除了一些特殊对其要求或其他要求的情况下（稍后将详细描述这些情况）, 请始终使用正确的缩进。</p>
-<a class="header" href="#80-行宽限制" id="80-行宽限制"><h1>80 行宽限制</h1></a>
+<h1><a class="header" href="#80-行宽限制" id="80-行宽限制">80 行宽限制</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#the-80-column-limit">查看英文原文</a></p>
 </blockquote>
 <p>每一行源码都应保持在 80 个字符宽度以内（NGINX 核心中一些代码保持在 78，而我建议将 80 作为硬性限制）。在连接多行的情况中，不同的上下文将有不同的缩进规则。我们将在接下来的内容中详细讨论每个案例。</p>
-<a class="header" href="#行尾空白符" id="行尾空白符"><h1>行尾空白符</h1></a>
+<h1><a class="header" href="#行尾空白符" id="行尾空白符">行尾空白符</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#line-trailing-white-spaces">查看英文原文</a></p>
 </blockquote>
 <p>每行源码的结尾不应该有<strong>空格符</strong>和<strong>制表符</strong>，即使是空行。大多数编辑器支持自动高亮或移除这样的空白符。确保正确地配置编辑器或者 IDE。</p>
-<a class="header" href="#函数声明" id="函数声明"><h1>函数声明</h1></a>
+<h1><a class="header" href="#函数声明" id="函数声明">函数声明</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-declarations">查看英文原文</a></p>
 </blockquote>
@@ -207,7 +217,7 @@
 <blockquote>
 <p><strong>注意</strong>：函数定义的风格不同于函数声明。更多细节见<a href="./ch-06-function-definitions.html">函数定义</a>。</p>
 </blockquote>
-<a class="header" href="#函数定义" id="函数定义"><h1>函数定义</h1></a>
+<h1><a class="header" href="#函数定义" id="函数定义">函数定义</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-definitions">查看英文原文</a></p>
 </blockquote>
@@ -236,7 +246,7 @@ ngx_http_core_pool_size(ngx_conf_t *cf, void *post, void *data)
     ...
 }
 </code></pre>
-<a class="header" href="#局部变量" id="局部变量"><h1>局部变量</h1></a>
+<h1><a class="header" href="#局部变量" id="局部变量">局部变量</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#local-variables">查看英文原文</a></p>
 </blockquote>
@@ -279,7 +289,7 @@ ngx_sprintf(u_char *buf, const char *fmt, ...)
 }
 </code></pre>
 <p>在局部变量定义之后跟着一个空行。</p>
-<a class="header" href="#空行使用" id="空行使用"><h1>空行使用</h1></a>
+<h1><a class="header" href="#空行使用" id="空行使用">空行使用</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#use-of-blank-lines">查看英文原文</a></p>
 </blockquote>
@@ -373,7 +383,7 @@ void ngx_http_block_reading(ngx_http_request_t *r);
 void ngx_http_test_reading(ngx_http_request_t *r);
 </code></pre>
 <p>前者大多与<strong>响应头</strong>相关，后者与<strong>请求体</strong>相关。</p>
-<a class="header" href="#类型转换" id="类型转换"><h1>类型转换</h1></a>
+<h1><a class="header" href="#类型转换" id="类型转换">类型转换</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#type-casting">查看英文原文</a></p>
 </blockquote>
@@ -398,7 +408,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 <pre><code class="language-C">aio-&gt;aiocb.aio_data = (uint64_t) (uintptr_t) ev;
 </code></pre>
 <p>注意 <code>(uint64_t)</code> 和 <code>(uintptr_t)</code> 之间的空格符，以及 <code>(uintptr_t)</code> 之后的。</p>
-<a class="header" href="#if-语句" id="if-语句"><h1>if 语句</h1></a>
+<h1><a class="header" href="#if-语句" id="if-语句">if 语句</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#if-statements">查看英文原文</a></p>
 </blockquote>
@@ -472,7 +482,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
             }
 </code></pre>
 <p>即使在标准 C 语言允许的情况下，我们也不能忽略花括号。</p>
-<a class="header" href="#else-语句" id="else-语句"><h2>else 语句</h2></a>
+<h2><a class="header" href="#else-语句" id="else-语句">else 语句</a></h2>
 <p>当 <code>if</code> 语句使用 <code>else</code> 分支时，它也必须用花括号来对包含的语句进行分组。同样的，空行必须在 <code>} else {</code> 之前。例如：</p>
 <pre><code class="language-C">    if (of-&gt;disable_symlinks == NGX_DISABLE_SYMLINKS_NOTOWNER
         &amp;&amp; !(create &amp; (NGX_FILE_CREATE_OR_OPEN|NGX_FILE_TRUNCATE)))
@@ -484,7 +494,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 </code></pre>
 <p>注意 <code>} else {</code> 是如何放在同一行上的，并且在 <code>} else {</code> 之前有一个空行。</p>
-<a class="header" href="#for-语句" id="for-语句"><h1>for 语句</h1></a>
+<h1><a class="header" href="#for-语句" id="for-语句">for 语句</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#for-statements">查看英文原文</a></p>
 </blockquote>
@@ -509,7 +519,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         ...
     }
 </code></pre>
-<a class="header" href="#while-语句" id="while-语句"><h1>while 语句</h1></a>
+<h1><a class="header" href="#while-语句" id="while-语句">while 语句</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#while-statements">查看英文原文</a></p>
 </blockquote>
@@ -536,7 +546,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         } while (p != end);
 </code></pre>
 <p>注意 <code>do</code> 和 <code>{</code> 之间的空格符，以及 <code>while</code> 前后的空格符。</p>
-<a class="header" href="#switch-语句" id="switch-语句"><h1>switch 语句</h1></a>
+<h1><a class="header" href="#switch-语句" id="switch-语句">switch 语句</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#switch-statements">查看英文原文</a></p>
 </blockquote>
@@ -575,7 +585,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
             level = NGX_LOG_ERR;
         }
 </code></pre>
-<a class="header" href="#处理内存分配错误" id="处理内存分配错误"><h1>处理内存分配错误</h1></a>
+<h1><a class="header" href="#处理内存分配错误" id="处理内存分配错误">处理内存分配错误</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#allocation-error-handling">查看英文原文</a></p>
 </blockquote>
@@ -587,7 +597,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 </code></pre>
 <p>这两条语句经常一起出现，所以我们就没有在分配语句与 <code>if</code> 语句之间加空行。</p>
 <p>确保不要省略动态内存分配语句后的 <code>if</code> 语句。</p>
-<a class="header" href="#函数调用" id="函数调用"><h1>函数调用</h1></a>
+<h1><a class="header" href="#函数调用" id="函数调用">函数调用</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#function-calls">查看英文原文</a></p>
 </blockquote>
@@ -599,7 +609,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
                                 size, &amp;cf-&gt;conf_file-&gt;file.name,
                                 cf-&gt;conf_file-&gt;line);
 </code></pre>
-<a class="header" href="#宏" id="宏"><h1>宏</h1></a>
+<h1><a class="header" href="#宏" id="宏">宏</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#macros">查看英文原文</a></p>
 </blockquote>
@@ -625,7 +635,7 @@ ngx_http_types_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 </code></pre>
 <p>我们推荐将 <code>\</code> 放在第 78 个字符的位置，尽管 NGINX 核心有时没这么做。</p>
-<a class="header" href="#全局静态变量" id="全局静态变量"><h1>全局/静态变量</h1></a>
+<h1><a class="header" href="#全局静态变量" id="全局静态变量">全局/静态变量</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#globalstatic-variables">查看英文原文</a></p>
 </blockquote>
@@ -644,11 +654,11 @@ ngx_http_request_body_filter_pt   ngx_http_top_request_body_filter;
     ngx_null_string
 };
 </code></pre>
-<a class="header" href="#运算符" id="运算符"><h1>运算符</h1></a>
+<h1><a class="header" href="#运算符" id="运算符">运算符</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#operators">查看英文原文</a></p>
 </blockquote>
-<a class="header" href="#二元运算符" id="二元运算符"><h2>二元运算符</h2></a>
+<h2><a class="header" href="#二元运算符" id="二元运算符">二元运算符</a></h2>
 <p>在大多数 C 的二元运算符前后，都要加个空格符，比如：四则运算符、位运算符、关系运算符、逻辑运算符。以下是些例子：</p>
 <pre><code class="language-C"> yday = days - (365 * year + year / 4 - year / 100 + year / 400);
 </code></pre>
@@ -662,7 +672,7 @@ ngx_http_request_body_filter_pt   ngx_http_top_request_body_filter;
 <pre><code class="language-C">for (p = pool, n = pool-&gt;d.next; /* void */; p = n, n = n-&gt;d.next) {
 </code></pre>
 <p>NGINX 通常只在 <code>for</code> 语句条件上下文、多个类型相同的变量声明当中使用逗号。而在其他情况下，最好将逗号表达式拆分成独立的语句。</p>
-<a class="header" href="#一元运算符" id="一元运算符"><h2>一元运算符</h2></a>
+<h2><a class="header" href="#一元运算符" id="一元运算符">一元运算符</a></h2>
 <p>通常在前缀一元运算符的前后是不加空格的。以下是些例子：</p>
 <pre><code class="language-C">for (p = salt; *p &amp;&amp; *p != '$' &amp;&amp; p &lt; last; p++) { /* void */ }
 </code></pre>
@@ -672,13 +682,13 @@ ngx_http_request_body_filter_pt   ngx_http_top_request_body_filter;
 <p>这规则同样适用于后缀一元运算符：</p>
 <pre><code class="language-C">for (value = 0; n--; line++) {
 </code></pre>
-<a class="header" href="#三元运算符" id="三元运算符"><h2>三元运算符</h2></a>
+<h2><a class="header" href="#三元运算符" id="三元运算符">三元运算符</a></h2>
 <p>三元运算符也要求在运算符的前后加个空格符，就像二元运算符那样。例如：</p>
 <pre><code class="language-C">node = (rc &lt; 0) ? node-&gt;left : node-&gt;right;
 </code></pre>
 <p>正如在这个例子中看到的那样，三元运算符的条件部分是个表达式时，可以给它加一对圆括号。
 虽然不要求这样，但这么做可使逻辑更为清晰。</p>
-<a class="header" href="#结构体联合枚举定义" id="结构体联合枚举定义"><h1>结构体/联合/枚举定义</h1></a>
+<h1><a class="header" href="#结构体联合枚举定义" id="结构体联合枚举定义">结构体/联合/枚举定义</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#structunionenum-definitions">查看英文原文</a></p>
 </blockquote>
@@ -731,7 +741,7 @@ ngx_http_request_body_filter_pt   ngx_http_top_request_body_filter;
     NGX_HTTP_KEEPALIVE_STATE
 } ngx_http_state_e;
 </code></pre>
-<a class="header" href="#类型定义" id="类型定义"><h1>类型定义</h1></a>
+<h1><a class="header" href="#类型定义" id="类型定义">类型定义</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#typedef-definitions">查看英文原文</a></p>
 </blockquote>
@@ -739,7 +749,7 @@ ngx_http_request_body_filter_pt   ngx_http_top_request_body_filter;
 <pre><code class="language-C">typedef u_int  aio_context_t;
 </code></pre>
 <p>在把一组 <code>typedef</code> 定义放在一起时，需 2 个以上的空格符。另外，出于美观的角度将它们纵向对其会更好，如下：</p>
-<pre><code>typedef struct ngx_module_s          ngx_module_t;
+<pre><code class="language-C">typedef struct ngx_module_s          ngx_module_t;
 typedef struct ngx_conf_s            ngx_conf_t;
 typedef struct ngx_cycle_s           ngx_cycle_t;
 typedef struct ngx_pool_s            ngx_pool_t;
@@ -747,7 +757,7 @@ typedef struct ngx_chain_s           ngx_chain_t;
 typedef struct ngx_log_s             ngx_log_t;
 typedef struct ngx_open_file_s       ngx_open_file_t;
 </code></pre>
-<a class="header" href="#工具" id="工具"><h1>工具</h1></a>
+<h1><a class="header" href="#工具" id="工具">工具</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#tools">查看英文原文</a></p>
 </blockquote>
@@ -766,7 +776,7 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 </code></pre>
-<a class="header" href="#goto-语句" id="goto-语句"><h1>goto 语句</h1></a>
+<h1><a class="header" href="#goto-语句" id="goto-语句">goto 语句</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#goto-statements-and-code-labels">查看英文原文</a></p>
 </blockquote>
@@ -792,7 +802,7 @@ failed:
     freeaddrinfo(res);
     return NGX_ERROR;
 </code></pre>
-<a class="header" href="#检查无效指针" id="检查无效指针"><h1>检查无效指针</h1></a>
+<h1><a class="header" href="#检查无效指针" id="检查无效指针">检查无效指针</a></h1>
 <blockquote>
 <p><a href="https://github.com/openresty/openresty.org/blob/9fa7554feee056304cd788d4584d6cf21442fd3f/v2/en/c-coding-style-guide.md#checking-pointer-nullity">查看英文原文</a></p>
 </blockquote>
@@ -804,11 +814,11 @@ failed:
 <pre><code class="language-C">if (name == NULL) {
 </code></pre>
 <p>对 <code>NULL</code> 的检查通常会更清楚地了解这个值的意思，从而有助于提高代码可读性。</p>
-<a class="header" href="#作者" id="作者"><h1>作者</h1></a>
+<h1><a class="header" href="#作者" id="作者">作者</a></h1>
 <p>这份指南的作者是 OpenResty 的创建者 Yichun Zhang。</p>
-<a class="header" href="#反馈与补丁" id="反馈与补丁"><h1>反馈与补丁</h1></a>
+<h1><a class="header" href="#反馈与补丁" id="反馈与补丁">反馈与补丁</a></h1>
 <p>随时欢迎反馈和补丁！它们应提交至 Yichun Zhang 的电子邮件地址 <code>yichun@openresty.com</code>。</p>
-<a class="header" href="#参考链接" id="参考链接"><h1>参考链接</h1></a>
+<h1><a class="header" href="#参考链接" id="参考链接">参考链接</a></h1>
 <ul>
 <li><a href="https://github.com/ruanyf/document-style-guide">中文技术文档写作规范</a></li>
 <li><a href="https://rust-lang-nursery.github.io/mdBook/">手册写作工具 mdbook</a></li>
@@ -838,6 +848,14 @@ failed:
 
         
 
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
         
 
         
